@@ -22,9 +22,9 @@ const transporter = nodemailer.createTransport({
 export const verifySmtpConnection = () => {
     transporter.verify((error, success) => {
         if (error) {
-            console.error("❌ SMTP Connection Error. Check HOST, PORT, and AUTH details:", error);
+            console.error("SMTP Connection Error. Check HOST, PORT, and AUTH details:", error);
         } else {
-            console.log("✅ SMTP Server is ready to take messages.");
+            console.log("SMTP Server is ready to take messages.");
         }
     });
 }
@@ -32,7 +32,7 @@ export const verifySmtpConnection = () => {
 export const sendNotificationEmail = async (student: Student, subject: string, textContent: string) => {
 
     if (!process.env.SMTP_USER || !process.env.SMTP_PASS || !process.env.SENDER_EMAIL) {
-        console.error("⚠️ Email functionality is skipped: Missing SMTP configuration in .env");
+        console.error("Email functionality is skipped: Missing SMTP configuration in .env");
         return;
     }
 
@@ -48,7 +48,7 @@ export const sendNotificationEmail = async (student: Student, subject: string, t
         const info = await transporter.sendMail(mailOptions);
         console.log(`Email sent successfully to ${student.email}. Message ID: ${info.messageId}`);
     } catch (error) {
-        console.error(`🚨 FAILED to send email to ${student.email}. Check .env credentials, SMTP Host, and Port. FULL ERROR:`, error);
+        console.error(`FAILED to send email to ${student.email}. Check .env credentials, SMTP Host, and Port. FULL ERROR:`, error);
     }
 };
 
