@@ -2,13 +2,14 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
 interface BookAttributes {
-    book_id: string;
-    title: string;
-    author: string;
-    isbn: string;
-    total_copies: number;
-    available_copies: number;
+    book_id?: string;
+    title?: string;
+    author?: string;
+    isbn?: string;
+    total_copies?: number;
+    available_copies?: number;
 }
+
 
 export class Book extends Model<BookAttributes> implements BookAttributes {
     public book_id!: string;
