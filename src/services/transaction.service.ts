@@ -34,7 +34,6 @@ export const issueBook = async (student_id: string, book_id: string) => {
     }
 
     const issue_date = new Date();
-    // FIX: Using MS_PER_DAY variable
     const due_date = new Date(issue_date.getTime() + MAX_ISSUE_DAYS * MS_PER_DAY);
 
     const transaction = await IssueTransaction.create({
