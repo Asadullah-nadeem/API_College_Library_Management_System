@@ -107,7 +107,6 @@ export const renewBook = async (transaction_id: number) => {
         throw new ApiError(`Book is overdue. Please return the book or clear the current fine of Rs.${fineDue.toFixed(2)} to renew.`, 400);
     }
 
-    // FIX: Using MS_PER_DAY variable
     const newDueDate = new Date(today.getTime() + MAX_ISSUE_DAYS * MS_PER_DAY);
 
     await transaction.update({
