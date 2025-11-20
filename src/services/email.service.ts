@@ -28,19 +28,15 @@ export const verifySmtpConnection = () => {
         }
     });
 }
-// ------------------------------------
-
 
 export const sendNotificationEmail = async (student: Student, subject: string, textContent: string) => {
 
-    // Check if essential environment variables are missing
     if (!process.env.SMTP_USER || !process.env.SMTP_PASS || !process.env.SENDER_EMAIL) {
         console.error("⚠️ Email functionality is skipped: Missing SMTP configuration in .env");
         return;
     }
 
     const mailOptions = {
-        // Ensure SENDER_EMAIL is used correctly here
         from: `"College Library" <${process.env.SENDER_EMAIL}>`,
         to: student.email,
         subject: subject,
