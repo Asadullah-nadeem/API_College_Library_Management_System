@@ -15,5 +15,6 @@ yarn-error.log*
 /.pnp
 .pnp.js
 .idea
-
+pnpm-lock.yaml
+node_modules
 .vscode/*
