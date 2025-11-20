@@ -3,14 +3,14 @@ import { createLogger, format, transports, Logger as WinstonLogger } from 'winst
 const { combine, timestamp, json, prettyPrint, colorize, simple } = format;
 
 const logger: WinstonLogger = createLogger({
-    level: process.env.NODE_ENV === 'production' ? 'info' : 'debug', // Set log level based on environment
+    level: process.env.NODE_ENV === 'development' ? 'info' : 'debug', // Set log level based on environment
     format: combine(
         timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         json()
     ),
     transports: [
         new transports.Console({
-            format: process.env.NODE_ENV !== 'production' ? combine(colorize(), simple()) : simple(),
+            format: process.env.NODE_ENV !== 'development' ? combine(colorize(), simple()) : simple(),
         }),
         new transports.File({ filename: 'logs/error.log', level: 'error' }),
         new transports.File({ filename: 'logs/combined.log' }),
@@ -23,7 +23,7 @@ const logger: WinstonLogger = createLogger({
     ]
 });
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'development') {
     logger.debug('Logging initialized in debug mode');
 }
 
