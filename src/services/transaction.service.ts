@@ -26,13 +26,18 @@ export const issueBook = async (student_id: string, book_id: string) => {
         throw new ApiError(`Book "${book.title}" is currently unavailable.`, 400);
     }
 
+    // const existingIssue = await IssueTransaction.findOne({
+    //     where: { student_id, book_id, is_returned: false },
+    // });
+    // if (existingIssue) {
+    //     throw new ApiError('Student already has an unreturned copy of this book.', 400);
+    // }
     const existingIssue = await IssueTransaction.findOne({
         where: { student_id, book_id, is_returned: false },
     });
     if (existingIssue) {
         throw new ApiError('Student already has an unreturned copy of this book.', 400);
     }
-
     const issue_date = new Date();
     const due_date = new Date(issue_date.getTime() + MAX_ISSUE_DAYS * MS_PER_DAY);
 
