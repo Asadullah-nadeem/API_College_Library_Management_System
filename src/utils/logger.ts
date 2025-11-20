@@ -3,7 +3,7 @@ import { createLogger, format, transports, Logger as WinstonLogger } from 'winst
 const { combine, timestamp, json, prettyPrint, colorize, simple } = format;
 
 const logger: WinstonLogger = createLogger({
-    level: process.env.NODE_ENV === 'development' ? 'info' : 'debug', // Set log level based on environment
+    level: process.env.NODE_ENV === 'development' ? 'info' : 'debug',
     format: combine(
         timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         json()
