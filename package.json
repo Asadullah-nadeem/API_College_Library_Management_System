@@ -7,7 +7,7 @@
     "start": "node dist/app.js",
     "dev": "ts-node src/app.ts",
     "build": "tsc",
-    "serve": "npm run build && npm run start",
+    "serve": "pnpm run build && pnpm run start",
     "test": "jest --detectOpenHandles --forceExit"
   },
   "keywords": [
