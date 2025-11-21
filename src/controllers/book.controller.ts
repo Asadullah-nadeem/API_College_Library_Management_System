@@ -80,11 +80,9 @@ export const updateBook = asyncHandler(async (req, res) => {
 export const deleteBook = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
-    // Check if there are any unreturned copies before deletion
     const book = await Book.findByPk(id);
-    if (book && book.available_copies < book.total_copies) {
+    if (book && book.available_copies < book.total_copies)
         throw new ApiError('Cannot delete book: some copies are currently issued.', 400);
-    }
 
     const deletedCount = await Book.destroy({
         where: { book_id: id }
