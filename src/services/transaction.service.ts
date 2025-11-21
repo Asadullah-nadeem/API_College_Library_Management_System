@@ -31,7 +31,7 @@ export const issueBook = async (student_id: string, book_id: string) => {
     const existingIssue = await IssueTransaction.findOne({
         where: { student_id, book_id, is_returned: false },
     });
-    
+
     if (existingIssue) {
         throw new ApiError('Student already has an unreturned copy of this book.', 400);
     }
