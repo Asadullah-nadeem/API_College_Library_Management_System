@@ -13,6 +13,7 @@ const logger: WinstonLogger = createLogger({
             format: process.env.NODE_ENV !== 'development' ? combine(colorize(), simple()) : simple(),
         }),
         new transports.File({ filename: 'logs/error.log', level: 'error' }),
+        new transports.File({filename: 'logs/'}),
         new transports.File({ filename: 'logs/combined.log' }),
     ],
     exceptionHandlers: [
